@@ -8,6 +8,7 @@ import { BarChart } from "@/components/charts/bar-chart"
 import { DonutChart } from "@/components/charts/donut-chart"
 import { DataTable } from "@/components/data-table"
 import { DateRangePicker } from "@/components/date-range-picker"
+import { MetricCard } from "@/components/metric-card"
 import { MetricCardSkeleton, ChartSkeleton, TableSkeleton, FilterSkeleton } from "@/components/loading-skeleton"
 import { TrendingUp, Users, DollarSign, Activity, ArrowUp, ArrowDown, Download, Filter, RefreshCw } from "lucide-react"
 import { DateRange } from "react-day-picker"
@@ -21,7 +22,7 @@ const initialMetrics = [
     value: "$9,125,100",
     change: 12.5,
     trend: "up" as const,
-    icon: DollarSign,
+    icon: "DollarSign",
     color: "text-blue-600"
   },
   {
@@ -29,7 +30,7 @@ const initialMetrics = [
     value: "34,345",
     change: 8.2,
     trend: "up" as const,
-    icon: Users,
+    icon: "Users",
     color: "text-green-600"
   },
   {
@@ -37,7 +38,7 @@ const initialMetrics = [
     value: "23.5%",
     change: 4.3,
     trend: "up" as const,
-    icon: TrendingUp,
+    icon: "TrendingUp",
     color: "text-purple-600"
   },
   {
@@ -45,7 +46,7 @@ const initialMetrics = [
     value: "15.7%",
     change: 6.8,
     trend: "up" as const,
-    icon: Activity,
+    icon: "Activity",
     color: "text-orange-600"
   }
 ]
