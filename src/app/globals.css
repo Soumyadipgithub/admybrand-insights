@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* AI DASHBOARD GENERATOR INSPIRED - Clean & Modern */
+    /* AI DASHBOARD GENERATOR - Clean Professional Theme */
     --background: 0 0% 100%;
     --foreground: 222 84% 5%;
     --card: 0 0% 100%;
@@ -12,8 +12,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 84% 5%;
     
-    /* Primary - Deep Blue */
-    --primary: 217 91% 60%;
+    /* Primary - Professional Blue */
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
     
     /* Secondary - Light Blue */
@@ -43,10 +43,10 @@
     /* Border - Subtle */
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --ring: 221 83% 53%;
     
     /* Radius - Modern */
-    --radius: 0.5rem;
+    --radius: 0.75rem;
     
     /* Shadows - Subtle */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);

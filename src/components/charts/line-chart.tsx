@@ -32,7 +32,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 export function LineChart({ data, title, description }: LineChartProps) {
   return (
-    <Card className="bg-white border border-gray-200">
+    <Card className="bg-white border border-gray-200 hover:shadow-md transition-shadow duration-200">
       <CardHeader className="pb-4">
         <CardTitle className="text-xl font-bold text-gray-900">{title}</CardTitle>
         {description && <CardDescription className="text-gray-600">{description}</CardDescription>}

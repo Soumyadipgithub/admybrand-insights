@@ -22,7 +22,7 @@ export function MetricCard({ metric, className }: MetricCardProps) {
   
   return (
     <Card className={cn(
-      "bg-white border border-gray-200 p-6",
+      "bg-white border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200",
       className
     )}>
       <div className="flex items-center justify-between">
@@ -30,7 +30,7 @@ export function MetricCard({ metric, className }: MetricCardProps) {
           <p className="text-sm font-medium text-gray-600">{metric.title}</p>
           <p className="text-2xl font-bold text-gray-900">{metric.value}</p>
         </div>
-        <div className="p-2 bg-blue-100 rounded-lg">
+        <div className="p-2 bg-blue-50 rounded-lg">
           <Icon className="h-5 w-5 text-blue-600" />
         </div>
       </div>
