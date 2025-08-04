@@ -191,187 +191,163 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
-      {/* Header with Filters */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard Overview</h1>
-          <p className="text-gray-600">Welcome back! Here's what's happening with your campaigns today.</p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20">
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Header with Filters */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
+          <div>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent mb-2">
+              Dashboard Overview
+            </h1>
+            <p className="text-slate-600 text-lg">Welcome back! Here's what's happening with your campaigns today.</p>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            {isLoading ? (
+              <FilterSkeleton />
+            ) : (
+              <>
+                <DateRangePicker
+                  date={dateRange}
+                  onDateChange={setDateRange}
+                />
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleRefresh}
+                  disabled={isLoading}
+                  className="bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-white hover:shadow-md transition-all duration-200 rounded-xl"
+                >
+                  <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+                  Refresh
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleExport('csv')}
+                  className="bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-white hover:shadow-md transition-all duration-200 rounded-xl"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Export CSV
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleExport('pdf')}
+                  className="bg-white/80 backdrop-blur-sm border-slate-200 hover:bg-white hover:shadow-md transition-all duration-200 rounded-xl"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Export PDF
+                </Button>
+              </>
+            )}
+          </div>
         </div>
-        
-        <div className="flex items-center gap-3">
+
+        {/* Metrics Grid */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-8">
           {isLoading ? (
-            <FilterSkeleton />
+            Array.from({ length: 4 }).map((_, index) => (
+              <MetricCardSkeleton key={index} />
+            ))
           ) : (
-            <>
-              <DateRangePicker
-                date={dateRange}
-                onDateChange={setDateRange}
-              />
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleRefresh}
-                disabled={isLoading}
-              >
-                <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-                Refresh
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleExport('csv')}
-              >
-                <Download className="h-4 w-4 mr-2" />
-                Export CSV
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleExport('pdf')}
-              >
-                <Download className="h-4 w-4 mr-2" />
-                Export PDF
-              </Button>
-            </>
+            currentMetrics.map((metric, index) => (
+              <MetricCard key={metric.title} metric={metric} />
+            ))
           )}
         </div>
-      </div>
 
-      {/* Metrics Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {isLoading ? (
-          Array.from({ length: 4 }).map((_, index) => (
-            <MetricCardSkeleton key={index} />
-          ))
-        ) : (
-          currentMetrics.map((metric, index) => (
-            <Card key={metric.title} className="bg-white border-0 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1">
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium text-gray-600">{metric.title}</CardTitle>
-                  <metric.icon className={`h-5 w-5 ${metric.color}`} />
-                </div>
+        {/* Charts Section */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-8">
+          {/* Revenue Trend */}
+          <div className="lg:col-span-2">
+            <LineChart
+              data={salesData}
+              title="Revenue Trend"
+              description="Monthly revenue performance over time"
+            />
+          </div>
+
+          {/* User Demographics */}
+          <div>
+            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-500 h-full">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-xl font-bold text-slate-900">User Demographics</CardTitle>
+                <p className="text-slate-600">Age distribution of users</p>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-gray-900 mb-2">{metric.value}</div>
-                <div className="flex items-center text-sm">
-                  {metric.trend === "up" ? (
-                    <ArrowUp className="h-4 w-4 text-green-500 mr-1" />
-                  ) : (
-                    <ArrowDown className="h-4 w-4 text-red-500 mr-1" />
-                  )}
-                  <span className={`font-medium ${metric.trend === "up" ? "text-green-500" : "text-red-500"}`}>
-                    +{metric.change.toFixed(1)}%
-                  </span>
-                  <span className="text-gray-500 ml-1">from last month</span>
+                <div className="h-80">
+                  <DonutChart
+                    data={userDemographics}
+                    title=""
+                    description=""
+                  />
                 </div>
               </CardContent>
             </Card>
-          ))
-        )}
-      </div>
+          </div>
+        </div>
 
-      {/* Charts Section */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {/* Revenue Trend */}
-        <div className="lg:col-span-2">
-          <Card className="bg-white border-0 shadow-sm">
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold text-gray-900">Revenue Trend</CardTitle>
-              <p className="text-sm text-gray-600">Monthly revenue performance over time</p>
+        {/* Additional Charts */}
+        <div className="grid gap-8 md:grid-cols-2 mb-8">
+          {/* Revenue by Channel */}
+          <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-500">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl font-bold text-slate-900">Revenue by Channel</CardTitle>
+              <p className="text-slate-600">Revenue distribution by marketing channel</p>
             </CardHeader>
             <CardContent>
               <div className="h-80">
-                <LineChart
-                  data={salesData}
+                <BarChart
+                  data={revenueByChannel}
                   title=""
                   description=""
                 />
               </div>
             </CardContent>
           </Card>
-        </div>
 
-        {/* User Demographics */}
-        <div>
-          <Card className="bg-white border-0 shadow-sm">
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold text-gray-900">User Demographics</CardTitle>
-              <p className="text-sm text-gray-600">Age distribution of users</p>
+          {/* Campaign Performance */}
+          <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-500">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl font-bold text-slate-900">Campaign Performance</CardTitle>
+              <p className="text-slate-600">Top performing campaigns</p>
             </CardHeader>
             <CardContent>
-              <div className="h-80">
-                <DonutChart
-                  data={userDemographics}
-                  title=""
-                  description=""
-                />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      {/* Additional Charts */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Revenue by Channel */}
-        <Card className="bg-white border-0 shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold text-gray-900">Revenue by Channel</CardTitle>
-            <p className="text-sm text-gray-600">Revenue distribution by marketing channel</p>
-          </CardHeader>
-          <CardContent>
-            <div className="h-80">
-              <BarChart
-                data={revenueByChannel}
-                title=""
-                description=""
-              />
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Campaign Performance */}
-        <Card className="bg-white border-0 shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold text-gray-900">Campaign Performance</CardTitle>
-            <p className="text-sm text-gray-600">Top performing campaigns</p>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[
-                { name: "Social Media Campaign", value: "$2.4M", growth: "+15%", color: "bg-blue-500" },
-                { name: "Email Marketing", value: "$1.8M", growth: "+12%", color: "bg-green-500" },
-                { name: "Search Ads", value: "$1.2M", growth: "+8%", color: "bg-purple-500" },
-                { name: "Content Marketing", value: "$890K", growth: "+6%", color: "bg-orange-500" }
-              ].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                  <div className="flex items-center">
-                    <div className={`w-3 h-3 rounded-full ${item.color} mr-3`}></div>
-                    <div>
-                      <div className="font-medium text-gray-900">{item.name}</div>
-                      <div className="text-sm text-gray-600">{item.value}</div>
+              <div className="space-y-4">
+                {[
+                  { name: "Social Media Campaign", value: "$2.4M", growth: "+15%", color: "bg-gradient-to-r from-blue-500 to-blue-600" },
+                  { name: "Email Marketing", value: "$1.8M", growth: "+12%", color: "bg-gradient-to-r from-green-500 to-green-600" },
+                  { name: "Search Ads", value: "$1.2M", growth: "+8%", color: "bg-gradient-to-r from-purple-500 to-purple-600" },
+                  { name: "Content Marketing", value: "$890K", growth: "+6%", color: "bg-gradient-to-r from-orange-500 to-orange-600" }
+                ].map((item, index) => (
+                  <div key={index} className="group flex items-center justify-between p-4 bg-slate-50/50 rounded-xl hover:bg-slate-100/50 transition-all duration-200 hover:shadow-sm">
+                    <div className="flex items-center">
+                      <div className={`w-3 h-3 rounded-full ${item.color} mr-4 shadow-sm`}></div>
+                      <div>
+                        <div className="font-semibold text-slate-900 group-hover:text-slate-800 transition-colors">{item.name}</div>
+                        <div className="text-sm text-slate-600">{item.value}</div>
+                      </div>
                     </div>
+                    <div className="text-green-600 font-semibold">{item.growth}</div>
                   </div>
-                  <div className="text-green-500 font-medium">{item.growth}</div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Data Table */}
+        <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-500">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl font-bold text-slate-900">Campaign Data</CardTitle>
+            <p className="text-slate-600">Detailed campaign performance with sorting and filtering</p>
+          </CardHeader>
+          <CardContent>
+            <DataTable data={tableData} />
           </CardContent>
         </Card>
       </div>
-
-      {/* Data Table */}
-      <Card className="bg-white border-0 shadow-sm">
-        <CardHeader>
-          <CardTitle className="text-lg font-semibold text-gray-900">Campaign Data</CardTitle>
-          <p className="text-sm text-gray-600">Detailed campaign performance with sorting and filtering</p>
-        </CardHeader>
-        <CardContent>
-          <DataTable data={tableData} />
-        </CardContent>
-      </Card>
     </div>
   )
 }
