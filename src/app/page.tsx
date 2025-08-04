@@ -192,15 +192,14 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-slate-900 to-cyan-900 relative">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative">
       <div className="max-w-7xl mx-auto px-6 py-8 relative z-10">
         {/* Header with Filters */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
           <div>
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-2 animate-pulse">
-              Dashboard Overview
+            <h1 className="text-4xl font-bold text-white mb-2">
+              Welcome back! Here's what's happening with your campaigns today.
             </h1>
-            <p className="text-cyan-200 text-lg">Welcome back! Here's what's happening with your campaigns today.</p>
           </div>
           
           <div className="flex items-center gap-3">
@@ -217,7 +216,7 @@ export default function DashboardPage() {
                   size="sm"
                   onClick={handleRefresh}
                   disabled={isLoading}
-                  className="bg-black/40 backdrop-blur-xl border-cyan-500/30 hover:bg-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 rounded-xl text-cyan-300"
+                  className="bg-slate-800 border-slate-600 hover:bg-slate-700 hover:border-teal-500 transition-all duration-200 rounded-lg text-gray-300"
                 >
                   <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
                   Refresh
@@ -226,7 +225,7 @@ export default function DashboardPage() {
                   variant="outline"
                   size="sm"
                   onClick={() => handleExport('csv')}
-                  className="bg-black/40 backdrop-blur-xl border-cyan-500/30 hover:bg-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 rounded-xl text-cyan-300"
+                  className="bg-slate-800 border-slate-600 hover:bg-slate-700 hover:border-teal-500 transition-all duration-200 rounded-lg text-gray-300"
                 >
                   <Download className="h-4 w-4 mr-2" />
                   Export CSV
@@ -235,7 +234,7 @@ export default function DashboardPage() {
                   variant="outline"
                   size="sm"
                   onClick={() => handleExport('pdf')}
-                  className="bg-black/40 backdrop-blur-xl border-cyan-500/30 hover:bg-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 rounded-xl text-cyan-300"
+                  className="bg-slate-800 border-slate-600 hover:bg-slate-700 hover:border-teal-500 transition-all duration-200 rounded-lg text-gray-300"
                 >
                   <Download className="h-4 w-4 mr-2" />
                   Export PDF
@@ -271,10 +270,10 @@ export default function DashboardPage() {
 
           {/* User Demographics */}
           <div>
-            <Card className="bg-black/40 backdrop-blur-xl border border-cyan-500/30 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500 h-full">
+            <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
               <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-bold text-cyan-100">User Demographics</CardTitle>
-                <p className="text-cyan-300">Age distribution of users</p>
+                <CardTitle className="text-xl font-bold text-white">User Demographics</CardTitle>
+                <p className="text-gray-300">Age distribution of users</p>
               </CardHeader>
               <CardContent>
                 <div className="h-80">
@@ -292,10 +291,10 @@ export default function DashboardPage() {
         {/* Additional Charts */}
         <div className="grid gap-8 md:grid-cols-2 mb-8">
           {/* Revenue by Channel */}
-          <Card className="bg-black/40 backdrop-blur-xl border border-cyan-500/30 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500">
+          <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300">
             <CardHeader className="pb-4">
-              <CardTitle className="text-xl font-bold text-cyan-100">Revenue by Channel</CardTitle>
-              <p className="text-cyan-300">Revenue distribution by marketing channel</p>
+              <CardTitle className="text-xl font-bold text-white">Revenue by Channel</CardTitle>
+              <p className="text-gray-300">Revenue distribution by marketing channel</p>
             </CardHeader>
             <CardContent>
               <div className="h-80">
@@ -309,25 +308,25 @@ export default function DashboardPage() {
           </Card>
 
           {/* Campaign Performance */}
-          <Card className="bg-black/40 backdrop-blur-xl border border-cyan-500/30 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500">
+          <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300">
             <CardHeader className="pb-4">
-              <CardTitle className="text-xl font-bold text-cyan-100">Campaign Performance</CardTitle>
-              <p className="text-cyan-300">Top performing campaigns</p>
+              <CardTitle className="text-xl font-bold text-white">Campaign Performance</CardTitle>
+              <p className="text-gray-300">Top performing campaigns</p>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {[
-                  { name: "Social Media Campaign", value: "$2.4M", growth: "+15%", color: "bg-gradient-to-r from-cyan-400 to-blue-500" },
+                  { name: "Social Media Campaign", value: "$2.4M", growth: "+15%", color: "bg-gradient-to-r from-teal-400 to-blue-500" },
                   { name: "Email Marketing", value: "$1.8M", growth: "+12%", color: "bg-gradient-to-r from-green-400 to-emerald-500" },
                   { name: "Search Ads", value: "$1.2M", growth: "+8%", color: "bg-gradient-to-r from-purple-400 to-pink-500" },
                   { name: "Content Marketing", value: "$890K", growth: "+6%", color: "bg-gradient-to-r from-orange-400 to-red-500" }
                 ].map((item, index) => (
-                  <div key={index} className="group flex items-center justify-between p-4 bg-cyan-500/10 rounded-xl hover:bg-cyan-500/20 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20 border border-cyan-500/20">
+                  <div key={index} className="group flex items-center justify-between p-4 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition-all duration-200 border border-slate-600/30">
                     <div className="flex items-center">
-                      <div className={`w-3 h-3 rounded-full ${item.color} mr-4 shadow-lg`}></div>
+                      <div className={`w-3 h-3 rounded-full ${item.color} mr-4`}></div>
                       <div>
-                        <div className="font-semibold text-cyan-100 group-hover:text-cyan-50 transition-colors">{item.name}</div>
-                        <div className="text-sm text-cyan-300">{item.value}</div>
+                        <div className="font-semibold text-white group-hover:text-gray-100 transition-colors">{item.name}</div>
+                        <div className="text-sm text-gray-300">{item.value}</div>
                       </div>
                     </div>
                     <div className="text-green-400 font-semibold">{item.growth}</div>
@@ -339,10 +338,10 @@ export default function DashboardPage() {
         </div>
 
         {/* Data Table */}
-        <Card className="bg-black/40 backdrop-blur-xl border border-cyan-500/30 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500">
+        <Card className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300">
           <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold text-cyan-100">Campaign Data</CardTitle>
-            <p className="text-cyan-300">Detailed campaign performance with sorting and filtering</p>
+            <CardTitle className="text-xl font-bold text-white">Campaign Data</CardTitle>
+            <p className="text-gray-300">Detailed campaign performance with sorting and filtering</p>
           </CardHeader>
           <CardContent>
             <DataTable data={tableData} />
