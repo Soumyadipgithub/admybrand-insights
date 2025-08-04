@@ -4,98 +4,98 @@
 
 @layer base {
   :root {
-    /* Modern Color Palette - Soft & Elegant */
-    --background: 0 0% 100%;
-    --foreground: 220 13% 18%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 13% 18%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 13% 18%;
+    /* Futuristic Color Palette - Neon & Cyber */
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
     
-    /* Primary - Deep Navy */
-    --primary: 220 70% 50%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary - Neon Cyan */
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 10% 4%;
     
-    /* Secondary - Soft Gray */
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 13% 18%;
+    /* Secondary - Neon Purple */
+    --secondary: 280 100% 60%;
+    --secondary-foreground: 240 10% 4%;
     
-    /* Muted - Gentle Gray */
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 8% 46%;
+    /* Muted - Dark Cyber */
+    --muted: 240 10% 8%;
+    --muted-foreground: 0 0% 70%;
     
-    /* Accent - Soft Purple */
-    --accent: 250 95% 60%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent - Neon Pink */
+    --accent: 320 100% 60%;
+    --accent-foreground: 240 10% 4%;
     
-    /* Success - Soft Green */
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
+    /* Success - Neon Green */
+    --success: 120 100% 50%;
+    --success-foreground: 240 10% 4%;
     
-    /* Warning - Soft Orange */
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    /* Warning - Neon Orange */
+    --warning: 30 100% 60%;
+    --warning-foreground: 240 10% 4%;
     
-    /* Destructive - Soft Red */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    /* Destructive - Neon Red */
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 240 10% 4%;
     
-    /* Border - Subtle */
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 220 70% 50%;
+    /* Border - Glowing */
+    --border: 180 100% 50%;
+    --input: 240 10% 8%;
+    --ring: 180 100% 50%;
     
-    /* Radius - Modern */
-    --radius: 1rem;
+    /* Radius - Futuristic */
+    --radius: 0.5rem;
     
-    /* Shadows - Soft */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    /* Shadows - Glowing */
+    --shadow-sm: 0 0 10px rgb(0 255 255 / 0.3);
+    --shadow: 0 0 20px rgb(0 255 255 / 0.4);
+    --shadow-md: 0 0 30px rgb(0 255 255 / 0.5);
+    --shadow-lg: 0 0 40px rgb(0 255 255 / 0.6);
+    --shadow-xl: 0 0 50px rgb(0 255 255 / 0.7);
   }
 
   .dark {
-    --background: 220 13% 18%;
-    --foreground: 0 0% 100%;
-    --card: 220 13% 18%;
-    --card-foreground: 0 0% 100%;
-    --popover: 220 13% 18%;
-    --popover-foreground: 0 0% 100%;
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
     
-    /* Primary - Deep Navy */
-    --primary: 220 70% 50%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary - Neon Cyan */
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 10% 4%;
     
-    /* Secondary - Dark Gray */
-    --secondary: 220 13% 25%;
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary - Neon Purple */
+    --secondary: 280 100% 60%;
+    --secondary-foreground: 240 10% 4%;
     
-    /* Muted - Dark Gray */
-    --muted: 220 13% 25%;
-    --muted-foreground: 220 8% 65%;
+    /* Muted - Dark Cyber */
+    --muted: 240 10% 8%;
+    --muted-foreground: 0 0% 70%;
     
-    /* Accent - Soft Purple */
-    --accent: 250 95% 60%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent - Neon Pink */
+    --accent: 320 100% 60%;
+    --accent-foreground: 240 10% 4%;
     
-    /* Success - Soft Green */
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 100%;
+    /* Success - Neon Green */
+    --success: 120 100% 50%;
+    --success-foreground: 240 10% 4%;
     
-    /* Warning - Soft Orange */
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    /* Warning - Neon Orange */
+    --warning: 30 100% 60%;
+    --warning-foreground: 240 10% 4%;
     
-    /* Destructive - Soft Red */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    /* Destructive - Neon Red */
+    --destructive: 0 100% 60%;
+    --destructive-foreground: 240 10% 4%;
     
-    /* Border - Subtle */
-    --border: 220 13% 25%;
-    --input: 220 13% 25%;
-    --ring: 220 70% 50%;
+    /* Border - Glowing */
+    --border: 180 100% 50%;
+    --input: 240 10% 8%;
+    --ring: 180 100% 50%;
   }
 }
 

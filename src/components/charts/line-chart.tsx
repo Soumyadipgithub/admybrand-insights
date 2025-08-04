@@ -32,10 +32,10 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 export function LineChart({ data, title, description }: LineChartProps) {
   return (
-    <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-500">
+    <Card className="bg-black/40 backdrop-blur-xl border border-cyan-500/30 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500">
       <CardHeader className="pb-4">
-        <CardTitle className="text-xl font-bold text-slate-900">{title}</CardTitle>
-        {description && <CardDescription className="text-slate-600">{description}</CardDescription>}
+        <CardTitle className="text-xl font-bold text-cyan-100">{title}</CardTitle>
+        {description && <CardDescription className="text-cyan-300">{description}</CardDescription>}
       </CardHeader>
       <CardContent className="pb-4">
         <div className="h-[300px]">
@@ -43,21 +43,26 @@ export function LineChart({ data, title, description }: LineChartProps) {
             <RechartsLineChart data={data}>
               <defs>
                 <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1}/>
+                  <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.1}/>
+                </linearGradient>
+                <linearGradient id="glowEffect" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#06b6d4" stopOpacity={0.5}/>
+                  <stop offset="50%" stopColor="#06b6d4" stopOpacity={0.8}/>
+                  <stop offset="100%" stopColor="#06b6d4" stopOpacity={0.5}/>
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#06b6d4" strokeOpacity={0.2} />
               <XAxis 
                 dataKey="name" 
                 className="text-xs"
-                tick={{ fill: "#64748b" }}
+                tick={{ fill: "#06b6d4" }}
                 tickLine={false}
                 axisLine={false}
               />
               <YAxis 
                 className="text-xs"
-                tick={{ fill: "#64748b" }}
+                tick={{ fill: "#06b6d4" }}
                 tickFormatter={(value) => `$${value / 1000}k`}
                 tickLine={false}
                 axisLine={false}
@@ -65,20 +70,21 @@ export function LineChart({ data, title, description }: LineChartProps) {
               <Tooltip 
                 content={<CustomTooltip />}
                 contentStyle={{
-                  backgroundColor: 'white',
-                  border: 'none',
+                  backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                  border: '1px solid #06b6d4',
                   borderRadius: '12px',
-                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
-                  padding: '12px'
+                  boxShadow: '0 0 20px rgba(6, 182, 212, 0.5)',
+                  padding: '12px',
+                  color: '#06b6d4'
                 }}
               />
               <Line 
                 type="monotone" 
                 dataKey="value" 
-                stroke="#3b82f6" 
-                strokeWidth={3}
-                dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
-                activeDot={{ r: 6, stroke: '#3b82f6', strokeWidth: 2 }}
+                stroke="url(#glowEffect)" 
+                strokeWidth={4}
+                dot={{ fill: '#06b6d4', strokeWidth: 3, r: 6, filter: 'drop-shadow(0 0 5px #06b6d4)' }}
+                activeDot={{ r: 8, stroke: '#06b6d4', strokeWidth: 3, filter: 'drop-shadow(0 0 10px #06b6d4)' }}
               />
             </RechartsLineChart>
           </ResponsiveContainer>
