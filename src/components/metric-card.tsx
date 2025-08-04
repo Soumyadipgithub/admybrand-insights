@@ -21,16 +21,16 @@ export function MetricCard({ metric, className }: MetricCardProps) {
   const Icon = iconMap[metric.icon as keyof typeof iconMap]
   
   return (
-    <Card className={cn("relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1", className)} style={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))' }}>
+    <Card className={cn("relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1", className)} style={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)' }}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardTitle className="text-sm font-medium" style={{ color: 'hsl(var(--muted-foreground))' }}>
           {metric.title}
         </CardTitle>
-        <Icon className="h-4 w-4 text-muted-foreground" />
+        <Icon className="h-4 w-4" style={{ color: 'hsl(var(--muted-foreground))' }} />
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold" style={{ color: 'hsl(var(--foreground))' }}>{metric.value}</div>
-        <div className="flex items-center text-xs text-muted-foreground mt-2">
+        <div className="flex items-center text-xs mt-2" style={{ color: 'hsl(var(--muted-foreground))' }}>
           {metric.trend === "up" ? (
             <ArrowUpIcon className="mr-1 h-3 w-3 text-green-500" />
           ) : (

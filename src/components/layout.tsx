@@ -17,16 +17,20 @@ export function Layout({ children }: LayoutProps) {
       {/* Main Content */}
       <div className="flex-1 md:ml-64">
         {/* Header */}
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b px-6" style={{ backgroundColor: 'hsl(var(--background))' }}>
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b px-6" style={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))' }}>
           <div className="flex items-center gap-4 flex-1">
             <div className="ml-12 md:ml-0" /> {/* Spacer for mobile menu button */}
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" style={{ color: 'hsl(var(--muted-foreground))' }} />
               <input
                 type="search"
                 placeholder="Search..."
                 className="flex h-9 w-full rounded-md border px-3 pl-10 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                style={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))' }}
+                style={{ 
+                  backgroundColor: 'hsl(var(--background))', 
+                  borderColor: 'hsl(var(--border))',
+                  color: 'hsl(var(--foreground))'
+                }}
               />
             </div>
           </div>
