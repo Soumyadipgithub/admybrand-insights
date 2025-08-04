@@ -192,56 +192,44 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white relative">
-      <div className="max-w-7xl mx-auto px-6 py-8 relative z-10">
-        {/* Header with Filters */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
-          <div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
-              Welcome back! Here's what's happening with your campaigns today.
-            </h1>
-          </div>
-          
-          <div className="flex items-center gap-3">
-            {isLoading ? (
-              <FilterSkeleton />
-            ) : (
-              <>
-                <DateRangePicker
-                  date={dateRange}
-                  onDateChange={setDateRange}
-                />
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleRefresh}
-                  disabled={isLoading}
-                  className="bg-white border-gray-300 hover:bg-gray-50 hover:border-blue-500 transition-all duration-200 rounded-lg text-gray-700"
-                >
-                  <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-                  Refresh
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleExport('csv')}
-                  className="bg-white border-gray-300 hover:bg-gray-50 hover:border-blue-500 transition-all duration-200 rounded-lg text-gray-700"
-                >
-                  <Download className="h-4 w-4 mr-2" />
-                  Export CSV
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleExport('pdf')}
-                  className="bg-white border-gray-300 hover:bg-gray-50 hover:border-blue-500 transition-all duration-200 rounded-lg text-gray-700"
-                >
-                  <Download className="h-4 w-4 mr-2" />
-                  Export PDF
-                </Button>
-              </>
-            )}
-          </div>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Hero Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Transform Your Data into Actionable Insights
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            AI-powered analytics dashboard that makes data visualization simple for everyone. 
+            Create professional, interactive dashboards without technical expertise.
+          </p>
+        </div>
+
+        {/* Key Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {metrics.map((metric) => (
+            <MetricCard key={metric.title} metric={metric} />
+          ))}
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <Button
+            onClick={handleRefresh}
+            disabled={isLoading}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md font-medium"
+          >
+            <RefreshCw className={`h-5 w-5 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+            Generate Dashboard
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => handleExport('csv')}
+            className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3 rounded-md font-medium"
+          >
+            <Download className="h-5 w-5 mr-2" />
+            Export Data
+          </Button>
         </div>
 
         {/* Metrics Grid */}
@@ -257,6 +245,39 @@ export default function DashboardPage() {
           )}
         </div>
 
+        {/* Features Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="bg-white p-8 rounded-lg border border-gray-200">
+            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">AI-Powered Visualization</h3>
+            <p className="text-gray-600">Automatically selects the most appropriate visualization types for different data sets based on data structure and best practices.</p>
+          </div>
+
+          <div className="bg-white p-8 rounded-lg border border-gray-200">
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Database Connectivity</h3>
+            <p className="text-gray-600">Connect to a wide range of data sources including popular database systems, CSV uploads, and API integrations.</p>
+          </div>
+
+          <div className="bg-white p-8 rounded-lg border border-gray-200">
+            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Real-Time Updates</h3>
+            <p className="text-gray-600">Dashboards automatically refresh with new data without manual intervention on your preferred schedule.</p>
+          </div>
+        </div>
+
         {/* Charts Section */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-8">
           {/* Revenue Trend */}
@@ -270,7 +291,7 @@ export default function DashboardPage() {
 
           {/* User Demographics */}
           <div>
-            <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 h-full">
+            <Card className="bg-white border border-gray-200 h-full">
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl font-bold text-gray-900">User Demographics</CardTitle>
                 <p className="text-gray-600">Age distribution of users</p>
@@ -291,7 +312,7 @@ export default function DashboardPage() {
         {/* Additional Charts */}
         <div className="grid gap-8 md:grid-cols-2 mb-8">
           {/* Revenue by Channel */}
-          <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
+          <Card className="bg-white border border-gray-200">
             <CardHeader className="pb-4">
               <CardTitle className="text-xl font-bold text-gray-900">Revenue by Channel</CardTitle>
               <p className="text-gray-600">Revenue distribution by marketing channel</p>
@@ -308,7 +329,7 @@ export default function DashboardPage() {
           </Card>
 
           {/* Campaign Performance */}
-          <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
+          <Card className="bg-white border border-gray-200">
             <CardHeader className="pb-4">
               <CardTitle className="text-xl font-bold text-gray-900">Campaign Performance</CardTitle>
               <p className="text-gray-600">Top performing campaigns</p>
@@ -316,16 +337,16 @@ export default function DashboardPage() {
             <CardContent>
               <div className="space-y-4">
                 {[
-                  { name: "Social Media Campaign", value: "$2.4M", growth: "+15%", color: "bg-gradient-to-r from-blue-500 to-blue-600" },
-                  { name: "Email Marketing", value: "$1.8M", growth: "+12%", color: "bg-gradient-to-r from-green-500 to-green-600" },
-                  { name: "Search Ads", value: "$1.2M", growth: "+8%", color: "bg-gradient-to-r from-purple-500 to-purple-600" },
-                  { name: "Content Marketing", value: "$890K", growth: "+6%", color: "bg-gradient-to-r from-orange-500 to-orange-600" }
+                  { name: "Social Media Campaign", value: "$2.4M", growth: "+15%", color: "bg-blue-500" },
+                  { name: "Email Marketing", value: "$1.8M", growth: "+12%", color: "bg-green-500" },
+                  { name: "Search Ads", value: "$1.2M", growth: "+8%", color: "bg-purple-500" },
+                  { name: "Content Marketing", value: "$890K", growth: "+6%", color: "bg-orange-500" }
                 ].map((item, index) => (
-                  <div key={index} className="group flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all duration-200 border border-gray-200">
+                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                     <div className="flex items-center">
                       <div className={`w-3 h-3 rounded-full ${item.color} mr-4`}></div>
                       <div>
-                        <div className="font-semibold text-gray-900 group-hover:text-gray-800 transition-colors">{item.name}</div>
+                        <div className="font-semibold text-gray-900">{item.name}</div>
                         <div className="text-sm text-gray-600">{item.value}</div>
                       </div>
                     </div>
@@ -338,7 +359,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Data Table */}
-        <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
+        <Card className="bg-white border border-gray-200">
           <CardHeader className="pb-4">
             <CardTitle className="text-xl font-bold text-gray-900">Campaign Data</CardTitle>
             <p className="text-gray-600">Detailed campaign performance with sorting and filtering</p>
