@@ -12,6 +12,7 @@ import { MetricCardSkeleton, ChartSkeleton, TableSkeleton, FilterSkeleton } from
 import { TrendingUp, Users, DollarSign, Activity, ArrowUp, ArrowDown, Download, Filter, RefreshCw } from "lucide-react"
 import { DateRange } from "react-day-picker"
 import { exportToCSV, exportToPDF } from "@/components/export-utils"
+import { TableData } from "@/lib/mock-data"
 
 // Enhanced mock data with real-time simulation
 const initialMetrics = [
@@ -80,11 +81,76 @@ const userDemographics = [
 ]
 
 const tableData = [
-  { id: 1, campaign: "Summer Sale", revenue: "$125,000", conversions: 234, ctr: "3.2%", status: "Active" },
-  { id: 2, campaign: "Holiday Special", revenue: "$89,500", conversions: 156, ctr: "2.8%", status: "Active" },
-  { id: 3, campaign: "New Product Launch", revenue: "$203,000", conversions: 445, ctr: "4.1%", status: "Active" },
-  { id: 4, campaign: "Email Newsletter", revenue: "$67,200", conversions: 123, ctr: "2.1%", status: "Paused" },
-  { id: 5, campaign: "Social Media Ads", revenue: "$156,800", conversions: 289, ctr: "3.5%", status: "Active" }
+  {
+    id: "1",
+    campaign: "Summer Sale",
+    status: "active" as const,
+    budget: 150000,
+    spent: 125000,
+    impressions: 45000,
+    clicks: 2340,
+    conversions: 234,
+    ctr: 5.2,
+    roi: 83.3,
+    startDate: "2024-06-01",
+    endDate: "2024-08-31"
+  },
+  {
+    id: "2",
+    campaign: "Holiday Special",
+    status: "active" as const,
+    budget: 100000,
+    spent: 89500,
+    impressions: 32000,
+    clicks: 1560,
+    conversions: 156,
+    ctr: 4.9,
+    roi: 89.5,
+    startDate: "2024-11-01",
+    endDate: "2024-12-31"
+  },
+  {
+    id: "3",
+    campaign: "New Product Launch",
+    status: "active" as const,
+    budget: 250000,
+    spent: 203000,
+    impressions: 78000,
+    clicks: 4450,
+    conversions: 445,
+    ctr: 5.7,
+    roi: 81.2,
+    startDate: "2024-09-01",
+    endDate: "2024-11-30"
+  },
+  {
+    id: "4",
+    campaign: "Email Newsletter",
+    status: "paused" as const,
+    budget: 80000,
+    spent: 67200,
+    impressions: 25000,
+    clicks: 1230,
+    conversions: 123,
+    ctr: 4.9,
+    roi: 84.0,
+    startDate: "2024-07-01",
+    endDate: "2024-09-30"
+  },
+  {
+    id: "5",
+    campaign: "Social Media Ads",
+    status: "active" as const,
+    budget: 180000,
+    spent: 156800,
+    impressions: 55000,
+    clicks: 2890,
+    conversions: 289,
+    ctr: 5.3,
+    roi: 87.1,
+    startDate: "2024-08-01",
+    endDate: "2024-10-31"
+  }
 ]
 
 export default function DashboardPage() {
